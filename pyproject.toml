@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "cli-quest"
+version = "0.1.0"
+description = ""
+authors = ["IndigonaBlue <rdadeveyra@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = {extras = ["standard"], version = "^0.115.13"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
