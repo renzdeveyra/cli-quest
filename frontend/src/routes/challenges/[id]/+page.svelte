@@ -2,7 +2,8 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import Terminal from '$lib/components/Terminal.svelte';
+
+	let terminalComponent: any = null;
 
 	interface Challenge {
 		id: string;
@@ -33,6 +34,8 @@
 	const challengeId = $page.params.id;
 
 	onMount(async () => {
+		const Terminal = (await import('$lib/components/Terminal.svelte')).default;
+		terminalComponent = Terminal;
 		await loadChallenge();
 	});
 
@@ -239,10 +242,13 @@
 			<!-- Right Panel - Terminal -->
 			<div class="flex-1 bg-gray-900">
 				<div class="h-full p-4">
-					<Terminal 
-						sessionId={session.session_id} 
-						onCommand={handleCommand}
-					/>
+					{#if terminalComponent && session}
+						<svelte:component
+							this={terminalComponent}
+							sessionId={session.session_id}
+							onCommand={handleCommand}
+						/>
+					{/if}
 				</div>
 			</div>
 		</div>

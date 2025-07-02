@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
-	import { Terminal } from '@xterm/xterm';
+	import * as xterm from '@xterm/xterm';
 	import { FitAddon } from '@xterm/addon-fit';
 	import { WebLinksAddon } from '@xterm/addon-web-links';
 	import '@xterm/xterm/css/xterm.css';
@@ -17,7 +17,7 @@
 
 	onMount(() => {
 		// Initialize terminal
-		terminal = new Terminal({
+		terminal = new xterm.Terminal({
 			cursorBlink: true,
 			fontSize: 14,
 			fontFamily: 'Monaco, Menlo, "Ubuntu Mono", monospace',
